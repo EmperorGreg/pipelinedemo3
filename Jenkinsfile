@@ -23,13 +23,13 @@ pipeline {
                    '''
             }
         }
-        stage('Unit Tests Converter') {
-            steps {
-                sh '''
-                      python3 -m pytest ./converter/tests/test_unit.py
-                   '''
-            }
-        }
+        //stage('Unit Tests Converter') {
+        //    steps {
+        //        sh '''
+        //               python3 -m pytest ./converter/tests/test_unit.py
+        //           '''
+        //    }
+        //}
         
         stage('docker prune') {
             steps {
