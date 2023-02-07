@@ -42,7 +42,17 @@ pipeline {
                 sh 'docker-compose build'
             }
         }
-
+        stage('connect via ssh') {
+            steps {
+                sh '''
+                    #!/bin/bash
+                    ssh -i /home/jenkins/.ssh/key -o StrictHostKeyChecking=no ubuntu@172.31.46.199 << EOF
+                    docker system prune -a -f
+                    docker-compose -f /home/ubuntu/pipelinedemo3/docker-compose.yaml up -d
+                    << EOF
+                '''
+            }
+        }
         
         
     }
