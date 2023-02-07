@@ -16,13 +16,21 @@ pipeline {
         //         sh 'sudo pytest /home/jenkins/.jenkins/workspace/FlaskApp/'
         //     }
         // }
-        stage('Unit Tests') {
+        stage('Unit Tests Prime') {
             steps {
                 sh '''
                       python3 -m pytest ./prime/tests/test_unit.py
                    '''
             }
         }
+        stage('Unit Tests Converter') {
+            steps {
+                sh '''
+                      python3 -m pytest ./converter/tests/test_unit.py
+                   '''
+            }
+        }
+        
         stage('docker prune') {
             steps {
                 sh 'docker system prune -a -f'
@@ -35,13 +43,7 @@ pipeline {
             }
         }
 
-        stage('connect via ssh deploy server and run app') {
-            steps {
-                sh '''
-                   <\>
-                '''
-            }
-        }
+        
         
     }
 }
